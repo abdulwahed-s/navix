@@ -1,0 +1,1336 @@
+{
+  "@@locale": "en",
+  "appName": "Navix",
+  "@appName": {
+    "description": "The name of the application"
+  },
+  "login": "Login",
+  "register": "Register",
+  "email": "Email",
+  "password": "Password",
+  "confirmPassword": "Confirm Password",
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "edit": "Edit",
+  "confirm": "Confirm",
+  "loading": "Loading...",
+  "error": "Error",
+  "success": "Success",
+  "retry": "Retry",
+  "submit": "Submit",
+  "next": "Next",
+  "back": "Back",
+  "done": "Done",
+  "close": "Close",
+  "search": "Search",
+  "noResults": "No results found",
+  "networkError": "No internet connection",
+  "connectionRestored": "Connection restored",
+  "somethingWentWrong": "Something went wrong",
+  "tryAgain": "Try Again",
+  "loadingData": "Loading data...",
+  "welcomeToNavix": "Welcome to Navix",
+  "getStarted": "Get Started",
+  "continueText": "Continue",
+  "loginTitle": "Welcome Back",
+  "loginSubtitle": "Sign in to continue",
+  "registerTitle": "Create Account",
+  "registerSubtitle": "Sign up to get started",
+  "emailHint": "Enter your email",
+  "passwordHint": "Enter your password",
+  "confirmPasswordHint": "Re-enter your password",
+  "forgotPassword": "Forgot Password?",
+  "dontHaveAccount": "Don't have an account?",
+  "alreadyHaveAccount": "Already have an account?",
+  "signUp": "Sign Up",
+  "signIn": "Sign In",
+  "loggingIn": "Logging in...",
+  "registering": "Creating account...",
+  "loggingOut": "Logging out...",
+  "logoutSuccess": "Logged out successfully",
+  "loginSuccess": "Login successful",
+  "registerSuccess": "Account created successfully",
+  "emailRequired": "Email is required",
+  "emailInvalid": "Please enter a valid email",
+  "passwordRequired": "Password is required",
+  "passwordTooShort": "Password must be at least 6 characters",
+  "passwordsDoNotMatch": "Passwords do not match",
+  "confirmPasswordRequired": "Please confirm your password",
+  "authErrorInvalidCredential": "Invalid email or password",
+  "authErrorUserNotFound": "No account found with this email",
+  "authErrorWrongPassword": "Incorrect password",
+  "authErrorEmailAlreadyInUse": "An account already exists with this email",
+  "authErrorWeakPassword": "Password is too weak",
+  "authErrorInvalidEmail": "Invalid email address",
+  "authErrorUserDisabled": "This account has been disabled",
+  "authErrorTooManyRequests": "Too many attempts. Please try again later",
+  "authErrorOperationNotAllowed": "This operation is not allowed",
+  "authErrorUnknown": "An authentication error occurred",
+  "authErrorNetworkRequestFailed": "Network error. Please check your connection",
+  "profile": "Profile",
+  "editProfile": "Edit Profile",
+  "createProfile": "Create Profile",
+  "viewProfile": "View Profile",
+  "profileTitle": "Your Profile",
+  "completeYourProfile": "Complete Your Profile",
+  "completeProfileSubtitle": "Tell us about yourself to get started",
+  "name": "Name",
+  "nameHint": "Enter your full name",
+  "nameRequired": "Name is required",
+  "organization": "Organization",
+  "organizationHint": "Company, university, or team (optional)",
+  "skills": "Skills",
+  "skillsHint": "Add your skills",
+  "addSkill": "Add Skill",
+  "removeSkill": "Remove Skill",
+  "noSkillsAdded": "No skills added yet",
+  "selectSkills": "Select Skills",
+  "customSkill": "Custom Skill",
+  "addCustomSkill": "Add Custom Skill",
+  "portfolioLink": "Portfolio",
+  "portfolioHint": "https://yourportfolio.com",
+  "githubLink": "GitHub",
+  "githubHint": "https://github.com/username",
+  "otherLinks": "Other Links",
+  "addLink": "Add Link",
+  "removeLink": "Remove Link",
+  "linkHint": "https://example.com",
+  "invalidUrl": "Please enter a valid URL",
+  "profilePicture": "Profile Picture",
+  "changePhoto": "Change Photo",
+  "removePhoto": "Remove Photo",
+  "uploadPhoto": "Upload Photo",
+  "takePhoto": "Take Photo",
+  "chooseFromGallery": "Choose from Gallery",
+  "savingProfile": "Saving profile...",
+  "profileSaved": "Profile saved successfully",
+  "profileSaveError": "Failed to save profile",
+  "uploadingImage": "Uploading image...",
+  "imageUploadError": "Failed to upload image",
+  "loadingProfile": "Loading profile...",
+  "projectIdeas": "Project Ideas",
+  "generateIdeas": "Generate Ideas",
+  "generatingIdeas": "Generating project ideas...",
+  "aiThinking": "AI is thinking...",
+  "selectProjectType": "What type of project interests you?",
+  "selectTeamSize": "Solo or Team?",
+  "solo": "Solo",
+  "team": "Team",
+  "soloDescription": "Work independently at your own pace",
+  "teamDescription": "Collaborate with others",
+  "whatAreYourGoals": "What are your goals?",
+  "goalsHint": "Describe what you want to achieve",
+  "anyPreferences": "Any preferences?",
+  "preferencesHint": "Technologies, domains, or constraints",
+  "generateProjectIdeas": "Generate Project Ideas",
+  "projectIdeaTitle": "Project Ideas for You",
+  "noIdeasGenerated": "No ideas generated yet",
+  "selectThisIdea": "Select This Idea",
+  "viewDetails": "View Details",
+  "requiredSkills": "Required Skills",
+  "estimatedDuration": "Estimated Duration",
+  "complexity": "Complexity",
+  "feasibility": "Feasibility",
+  "complexityLow": "Low",
+  "complexityMedium": "Medium",
+  "complexityHigh": "High",
+  "durationDays": "{count, plural, =1{1 day} other{{count} days}}",
+  "@durationDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durationWeeks": "{count, plural, =1{1 week} other{{count} weeks}}",
+  "@durationWeeks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "durationMonths": "{count, plural, =1{1 month} other{{count} months}}",
+  "@durationMonths": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "aiErrorGeneral": "Failed to generate ideas. Please try again.",
+  "aiErrorRateLimit": "Too many requests. Please wait a moment.",
+  "aiErrorNetwork": "Network error. Check your connection.",
+  "ideaSelected": "Idea selected!",
+  "regenerateIdeas": "Regenerate Ideas",
+  "createProject": "Create Project",
+  "projectName": "Project Name",
+  "projectNameHint": "Enter project name",
+  "projectDescription": "Description",
+  "projectDescriptionHint": "Describe your project",
+  "teamSize": "Team Size",
+  "teamSizeHint": "Number of team members",
+  "projectTimeline": "Project Timeline",
+  "startDate": "Start Date",
+  "endDate": "End Date",
+  "selectDates": "Select Dates",
+  "generateRoadmap": "Generate Roadmap",
+  "generatingRoadmap": "Generating roadmap...",
+  "roadmapGenerated": "Roadmap Generated",
+  "reviewRoadmap": "Review your project roadmap",
+  "confirmAndCreate": "Confirm & Create Project",
+  "creatingProject": "Creating project...",
+  "projectCreated": "Project created successfully!",
+  "projectCreateError": "Failed to create project",
+  "milestones": "Milestones",
+  "milestone": "Milestone",
+  "milestoneDescription": "Milestone Description",
+  "milestoneName": "Milestone Name",
+  "addMilestone": "Add Milestone",
+  "editMilestone": "Edit Milestone",
+  "deleteMilestone": "Delete Milestone",
+  "milestoneDeadline": "Deadline",
+  "noMilestones": "No milestones yet",
+  "tasks": "Tasks",
+  "task": "Task",
+  "taskName": "Task Name",
+  "taskDescription": "Task Description",
+  "addTask": "Add Task",
+  "editTask": "Edit Task",
+  "deleteTask": "Delete Task",
+  "assignTo": "Assign To",
+  "unassigned": "Unassigned",
+  "deadline": "Deadline",
+  "estimatedHours": "Estimated Hours",
+  "noTasks": "No tasks yet",
+  "priority": "Priority",
+  "priorityLow": "Low",
+  "priorityMedium": "Medium",
+  "priorityHigh": "High",
+  "priorityCritical": "Critical",
+  "status": "Status",
+  "statusNotStarted": "Not Started",
+  "statusStarted": "Started",
+  "statusInProgress": "In Progress",
+  "statusFixing": "Fixing",
+  "statusBlocked": "Blocked",
+  "statusInReview": "In Review",
+  "statusCompleted": "Completed",
+  "projectPhase": "Phase",
+  "phaseActive": "Active",
+  "phaseCompleted": "Completed",
+  "phasePaused": "Paused",
+  "homeTab": "Home",
+  "myProjects": "My Projects",
+  "noProjects": "No projects yet",
+  "noProjectsMessage": "Create your first project to get started!",
+  "refreshProjects": "Pull to refresh",
+  "loadingProjects": "Loading projects...",
+  "workspace": "Workspace",
+  "dashboard": "Dashboard",
+  "overview": "Overview",
+  "progress": "Progress",
+  "progressPercent": "{percent}% Complete",
+  "@progressPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "nextMilestone": "Next Milestone",
+  "daysRemaining": "{days} days remaining",
+  "@daysRemaining": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "overdue": "Overdue",
+  "completionStatus": "Completion Status",
+  "teamMembers": "Team Members",
+  "member": "Member",
+  "leader": "Leader",
+  "roleLeader": "Project Leader",
+  "roleMember": "Team Member",
+  "workload": "Workload",
+  "tasksAssigned": "{count} tasks assigned",
+  "@tasksAssigned": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "taskDistribution": "Task Distribution",
+  "performance": "Performance",
+  "yourTasks": "Your Tasks",
+  "allTasks": "All Tasks",
+  "completedTasks": "Completed Tasks",
+  "pendingTasks": "Pending Tasks",
+  "markComplete": "Mark Complete",
+  "viewDetails": "View Details",
+  "projectChat": "Project Chat",
+  "typeMessage": "Type a message...",
+  "sendMessage": "Send",
+  "noMessages": "No messages yet",
+  "justNow": "Just now",
+  "updatePhase": "Update Phase",
+  "reassignTask": "Reassign Task",
+  "selectMember": "Select Member",
+  "riskPrediction": "Risk Prediction",
+  "comingSoon": "Coming Soon",
+  "riskAnalysis": "Risk Analysis",
+  "projectHealth": "Project Health",
+  "riskLevel": "Risk Level",
+  "riskLevelLow": "Low Risk",
+  "riskLevelMedium": "Medium Risk",
+  "riskLevelHigh": "High Risk",
+  "delayProbability": "Delay Probability",
+  "delayProbabilityPercent": "{percent}% chance of delay",
+  "@delayProbabilityPercent": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "atRiskTasks": "At-Risk Tasks",
+  "blockedTasks": "Blocked Tasks",
+  "recommendations": "Recommendations",
+  "aiRecommendations": "AI Recommendations",
+  "lastAnalyzed": "Last analyzed",
+  "analyzingProject": "Analyzing project...",
+  "noRisks": "No risks detected",
+  "noRisksMessage": "Your project is on track!",
+  "actionRequired": "Action Required",
+  "refreshAnalysis": "Refresh Analysis",
+  "viewDetails": "View Details",
+  "historicalPredictions": "Historical Predictions",
+  "predictionHistory": "Prediction History",
+  "taskDetails": "Task Details",
+  "taskName": "Task Name",
+  "taskDescription": "Description",
+  "dueDate": "Due Date",
+  "assignedTo": "Assigned To",
+  "assignee": "Assignee",
+  "unassigned": "Unassigned",
+  "overdueTask": "Overdue",
+  "dueIn": "Due in {days} days",
+  "@dueIn": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "dueToday": "Due Today",
+  "comments": "Comments",
+  "noComments": "No comments yet",
+  "addComment": "Add a comment...",
+  "postComment": "Post",
+  "taskUpdated": "Task updated successfully",
+  "taskReassigned": "Task reassigned successfully",
+  "confirmReassign": "Reassign Task",
+  "reassignMessage": "Select a team member to assign this task to",
+  "taskHistory": "Task History",
+  "statusChanged": "Status changed to {status}",
+  "@statusChanged": {
+    "placeholders": {
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "commentAdded": "Comment added",
+  "deleteTask": "Delete Task",
+  "confirmDelete": "Are you sure you want to delete this task?",
+  "calendar": "Calendar",
+  "today": "Today",
+  "events": "Events",
+  "noEvents": "No events",
+  "noEventsMessage": "No events on this day",
+  "allProjects": "All Projects",
+  "filterByProject": "Filter by Project",
+  "milestoneDeadline": "Milestone Deadline",
+  "taskDeadline": "Task Deadline",
+  "meeting": "Meeting",
+  "viewEvent": "View Event",
+  "eventDetails": "Event Details",
+  "eventsCount": "{count} events",
+  "@eventsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "upcomingEvents": "Upcoming Events",
+  "pastEvents": "Past Events",
+  "home": "Home",
+  "findPeople": "Find People",
+  "chat": "Chat",
+  "settings": "Settings",
+  "comingSoon": "Coming Soon",
+  "searchUsers": "Search users...",
+  "filterBySkills": "Filter by Skills",
+  "noUsersFound": "No users found",
+  "noUsersFoundMessage": "Try adjusting your search or filters",
+  "viewProfile": "View Profile",
+  "connect": "Connect",
+  "inviteToProject": "Invite to Project",
+  "connectionSent": "Connection request sent",
+  "alreadySent": "Already Sent",
+  "invitationSent": "Project invitation sent",
+  "filters": "Filters",
+  "clearFilters": "Clear Filters",
+  "applyFilters": "Apply Filters",
+  "expertiseLevelLabel": "Expertise Level",
+  "beginner": "Beginner",
+  "intermediate": "Intermediate",
+  "expert": "Expert",
+  "activeProjects": "Active Projects",
+  "activeProjectsCount": "{count} active projects",
+  "@activeProjectsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "usersFound": "{count} users found",
+  "@usersFound": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "selectSkills": "Select Skills",
+  "connectionRequest": "Connection Request",
+  "connectionRequestFrom": "{name} wants to connect",
+  "@connectionRequestFrom": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "acceptConnection": "Accept",
+  "rejectConnection": "Reject",
+  "connectionAccepted": "Connection accepted",
+  "connectionRejected": "Connection rejected",
+  "alreadyConnected": "Connected",
+  "cancelConnection": "Cancel Request",
+  "confirmCancelConnection": "Are you sure you want to cancel this connection request?",
+  "connectionCancelled": "Connection request cancelled",
+  "removeConnection": "Remove",
+  "confirmRemoveConnection": "Are you sure you want to remove this connection?",
+  "connectionRemoved": "Connection removed",
+  "respond": "Respond",
+  "messages": "Messages",
+  "noConversations": "No conversations yet",
+  "startConversation": "Start a conversation",
+  "lastMessage": "Last message",
+  "online": "Online",
+  "offline": "Offline",
+  "typing": "Typing...",
+  "sent": "Sent",
+  "delivered": "Delivered",
+  "read": "Read",
+  "deleteConversation": "Delete Conversation",
+  "confirmDeleteConversation": "Are you sure you want to delete this conversation?",
+  "conversationDeleted": "Conversation deleted",
+  "typeMessage": "Type a message...",
+  "sendMessage": "Send message",
+  "unreadMessages": "{count} unread",
+  "@unreadMessages": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "justNow": "Just now",
+  "minutesAgo": "{minutes}m ago",
+  "@minutesAgo": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursAgo": "{hours}h ago",
+  "@hoursAgo": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "startNewChat": "Start New Chat",
+  "connectedPeople": "Connected People",
+  "noConnectionsYet": "No connections yet",
+  "noConnectionsMessage": "Connect with people from Find People tab",
+  "selectPersonToChat": "Select a person to start chatting",
+  "loadingConnections": "Loading connections...",
+  "accountSettings": "Account",
+  "editProfile": "Edit Profile",
+  "changePassword": "Change Password",
+  "deleteAccount": "Delete Account",
+  "confirmDeleteAccount": "Are you sure you want to delete your account? This action cannot be undone.",
+  "accountDeleted": "Account deleted successfully",
+  "passwordChanged": "Password changed successfully",
+  "currentPassword": "Current Password",
+  "newPassword": "New Password",
+  "confirmPassword": "Confirm Password",
+  "passwordMismatch": "Passwords do not match",
+  "notificationSettings": "Notifications",
+  "taskAssignments": "Task Assignments",
+  "taskAssignmentsDesc": "Get notified when assigned to new tasks",
+  "projectUpdates": "Project Updates",
+  "projectUpdatesDesc": "Get notified about project changes",
+  "messageNotifications": "Messages",
+  "messageNotificationsDesc": "Get notified about new messages",
+  "riskAlerts": "Risk Alerts",
+  "riskAlertsDesc": "Get notified about project risks",
+  "privacySettings": "Privacy",
+  "profileVisibility": "Profile Visibility",
+  "publicProfile": "Public",
+  "privateProfile": "Private",
+  "whoCanFindYou": "Who Can Find You",
+  "everyone": "Everyone",
+  "connectionsOnly": "Connections Only",
+  "preferences": "Preferences",
+  "theme": "Theme",
+  "lightTheme": "Light",
+  "darkTheme": "Dark",
+  "systemTheme": "System",
+  "language": "Language",
+  "english": "English",
+  "arabic": "Arabic",
+  "about": "About",
+  "version": "Version",
+  "termsOfService": "Terms of Service",
+  "privacyPolicy": "Privacy Policy",
+  "helpAndSupport": "Help & Support",
+  "logout": "Logout",
+  "confirmLogout": "Are you sure you want to logout?",
+  "settingsSaved": "Settings saved",
+  "notificationCenter": "Notifications",
+  "noNotifications": "No notifications yet",
+  "markAsRead": "Mark as read",
+  "markAllAsRead": "Mark all as read",
+  "clearAll": "Clear all",
+  "clearAllNotifications": "Clear All Notifications",
+  "confirmClearNotifications": "Are you sure you want to clear all notifications?",
+  "notificationsCleared": "Notifications cleared",
+  "taskAssignedNotification": "You have been assigned to a task",
+  "taskDueSoonNotification": "Task due in {hours} hours",
+  "@taskDueSoonNotification": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      }
+    }
+  },
+  "taskOverdueNotification": "Task is overdue",
+  "milestoneReachedNotification": "Milestone reached",
+  "highRiskDetectedNotification": "High risk detected in project",
+  "newMessageNotification": "New message from {sender}",
+  "@newMessageNotification": {
+    "placeholders": {
+      "sender": {
+        "type": "String"
+      }
+    }
+  },
+  "projectInvitationNotification": "You have been invited to join {project}",
+  "@projectInvitationNotification": {
+    "placeholders": {
+      "project": {
+        "type": "String"
+      }
+    }
+  },
+  "enableNotifications": "Enable Notifications",
+  "notificationsDisabled": "Notifications are disabled",
+  "enableInSettings": "Enable in Settings",
+  "notificationPermissionDenied": "Notification permission denied",
+  "haveAnIdea": "I have an idea",
+  "submitIdea": "Submit Idea",
+  "describeYourIdea": "Describe your project idea in detail...",
+  "refineIdea": "Refine with AI",
+  "refiningIdea": "Refining your idea...",
+  "refinedIdea": "Refined Idea",
+  "improvedDescription": "Improved Description",
+  "scopeClarification": "Scope Clarification",
+  "suggestedFeatures": "Suggested Features",
+  "feasibilityAssessment": "Feasibility Assessment",
+  "requiredSkills": "Required Skills",
+  "yourSkills": "Your Skills",
+  "missingSkills": "Skills to Learn",
+  "acceptRefinement": "Accept & Create Project",
+  "refineAgain": "Refine Again",
+  "ideaRefinementSuccess": "Your idea has been refined successfully",
+  "ideaRefinementError": "Failed to refine your idea. Please try again.",
+  "provideMoreDetails": "Add more details to refine further...",
+  "feasibilityScore": "Feasibility: {score}/10",
+  "@feasibilityScore": {
+    "placeholders": {
+      "score": {
+        "type": "int"
+      }
+    }
+  },
+  "characterCount": "{count} characters",
+  "@characterCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "minCharacters": "Minimum 50 characters required",
+  "teamManagement": "Team Management",
+  "manageTeam": "Manage Team",
+  "inviteMembers": "Invite Members",
+  "selectMembers": "Select Members",
+  "searchMembers": "Search for members...",
+  "removeMember": "Remove Member",
+  "confirmRemoveMember": "Are you sure you want to remove {name} from the project?",
+  "@confirmRemoveMember": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "memberRemoved": "Member removed successfully",
+  "invitationSent": "Invitation sent",
+  "inviteMessageTitle": "Add a message",
+  "inviteMessageHint": "Why are you inviting them? (optional)",
+  "skipMessage": "Skip",
+  "sendInvite": "Send Invite",
+  "invitationAccepted": "Invitation accepted",
+  "invitationDeclined": "Invitation declined",
+  "invitationCancelled": "Invitation cancelled",
+  "cancelInvitation": "Cancel",
+  "cancelInvitationConfirm": "Cancel invitation to {name}?",
+  "@cancelInvitationConfirm": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "pendingInvitations": "Pending Invitations",
+  "noPendingInvitations": "No pending invitations",
+  "acceptInvitation": "Accept",
+  "declineInvitation": "Decline",
+  "invitedBy": "Invited by {name}",
+  "@invitedBy": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "changeRole": "Change Role",
+  "makeLeader": "Make Leader",
+  "makeMember": "Make Member",
+  "roleChanged": "Role changed successfully",
+  "projectLeader": "Leader",
+  "projectMember": "Member",
+  "assignedTasks": "{count} tasks assigned",
+  "@assignedTasks": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "completionRate": "{rate}% complete",
+  "@completionRate": {
+    "placeholders": {
+      "rate": {
+        "type": "int"
+      }
+    }
+  },
+  "taskReassignmentWarning": "This member's tasks will need to be reassigned.",
+  "pullToRefresh": "Pull to refresh",
+  "refreshing": "Refreshing...",
+  "noInternetConnection": "No internet connection",
+  "connectionRestored": "Connection restored",
+  "somethingWentWrong": "Something went wrong",
+  "tryAgain": "Try Again",
+  "loadingData": "Loading data...",
+  "noProjects": "No projects yet",
+  "createFirstProject": "Create your first project",
+  "noMessages": "No messages yet",
+  "startConversation": "Start a conversation",
+  "noSearchResults": "No results found",
+  "tryDifferentSearch": "Try a different search term",
+  "noTeamMembers": "No team members",
+  "inviteSomeone": "Invite someone to your project",
+  "networkError": "Network Error",
+  "serverError": "Server Error",
+  "permissionDenied": "Permission Denied",
+  "retryConnection": "Retry Connection",
+  "errorOccurred": "An error occurred",
+  "completeProfileToContinue": "Complete your profile to continue",
+  "myProfile": "My Profile",
+  "editProfile": "Edit Profile",
+  "profileRequired": "Profile information is required to use the app",
+  "links": "Links",
+  "portfolio": "Portfolio",
+  "chooseProjectPath": "How would you like to start?",
+  "choosePathSubtitle": "Select an option to begin your project journey",
+  "iHaveAnIdea": "I have an idea",
+  "iHaveAnIdeaDesc": "Submit your idea and let AI help refine it",
+  "iDontHaveIdea": "I don't have an idea",
+  "iDontHaveIdeaDesc": "Answer questions and let AI generate ideas for you",
+  "teamSizeLabel": "Team Size",
+  "teamSizeDesc": "How many members will work on this project?",
+  "members": "{count, plural, =1{1 member} other{{count} members}}",
+  "@members": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "brainstormingQuestions": "Let's brainstorm your project",
+  "tellUsAboutYourTeam": "Tell us about your team",
+  "teamMemberSkills": "Team Member {number} Skills",
+  "@teamMemberSkills": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "addSkillsForMember": "Add skills for this team member",
+  "yourInterests": "What are your interests?",
+  "interestsHint": "e.g., AI, web development, mobile apps, data science",
+  "preferredTechnologies": "Preferred Technologies",
+  "technologiesHint": "e.g., Flutter, React, Python, TensorFlow",
+  "projectDomain": "Project Domain",
+  "selectDomains": "Select domains that interest you",
+  "webDevelopment": "Web Development",
+  "mobileDevelopment": "Mobile Development",
+  "artificialIntelligence": "Artificial Intelligence",
+  "dataScience": "Data Science",
+  "gamesDevelopment": "Games Development",
+  "iotEmbedded": "IoT \u0026 Embedded Systems",
+  "blockchain": "Blockchain",
+  "cybersecurity": "Cybersecurity",
+  "timeCommitment": "Time Commitment",
+  "hoursPerWeek": "Hours per week",
+  "hoursPerWeekHint": "How many hours can you dedicate weekly?",
+  "learningGoals": "Learning Goals",
+  "learningGoalsHint": "What do you want to learn from this project?",
+  "additionalInfo": "Additional Information",
+  "additionalInfoHint": "Any other details that might help us generate better ideas",
+  "stepProgress": "Step {current} of {total}",
+  "@stepProgress": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "skipStep": "Skip",
+  "continueToNext": "Continue",
+  "back": "Back",
+  "generateIdeas": "Generate Ideas",
+  "teamMemberSkillsDesc": "List the skills of each team member",
+  "teamMemberSkillsHint": "e.g., John: Flutter, Dart; Sarah: Python, ML",
+  "yourInterestsDesc": "What topics or areas are you passionate about?",
+  "yourInterestsHint": "e.g., Healthcare, Education, Gaming, Social Impact",
+  "preferredTechnologiesDesc": "Which technologies would you like to use or learn?",
+  "preferredTechnologiesHint": "e.g., Flutter, React, Python, TensorFlow, Firebase",
+  "projectDomainDesc": "Select one or more domains for your project",
+  "timeCommitmentDesc": "How much time can you dedicate to this project?",
+  "timeCommitmentHint": "e.g., 3 months, 10 hours per week",
+  "learningGoalsDesc": "What do you want to learn from this project?",
+  "learningGoalsHint": "e.g., Learn machine learning, improve backend skills",
+  "additionalInfoHint": "Any other information that might help generate better ideas",
+  "generatedIdeas": "Generated Project Ideas",
+  "selectIdeaToStart": "Select an idea to start your project",
+  "weeksEstimate": "{weeks} weeks",
+  "@weeksEstimate": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "projectSettings": "Project Settings",
+  "roles": "Roles",
+  "roleAssignments": "Role Assignments",
+  "assignRole": "Assign Role",
+  "assignMember": "Assign Member",
+  "roleAssignedSuccess": "Role assigned successfully",
+  "noRoles": "No roles defined for this project",
+  "tasksForRole": "{count} tasks",
+  "@tasksForRole": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "requiredRole": "Required Role",
+  "roleDescription": "Role Description",
+  "groupBy": "Group By",
+  "groupByNone": "All Tasks",
+  "groupByRole": "Group by Role",
+  "groupByTime": "Group by Time",
+  "urgency": "Urgency",
+  "urgencyLow": "Low Urgency",
+  "urgencyMedium": "Medium Urgency",
+  "urgencyHigh": "High Urgency",
+  "urgencyCritical": "Critical Urgency",
+  "overdueWarning": "Overdue!",
+  "tasksDueToday": "Due Today",
+  "tasksDueThisWeek": "This Week",
+  "tasksOverdue": "Overdue",
+  "tasksLater": "Later",
+  "noTasksInGroup": "No tasks in this group",
+  "filterByRole": "Filter by Role",
+  "allRoles": "All Roles",
+  "noRoleAssigned": "No Role Assigned",
+  "allPeriods": "All Periods",
+  "filterBy": "Filter",
+  "priorityHighToLow": "Priority: High → Low",
+  "priorityLowToHigh": "Priority: Low → High",
+  "deadlineAscending": "Deadline: Earliest First",
+  "deadlineDescending": "Deadline: Latest First",
+  "noSorting": "Default Order",
+  "tasksInGroup": "{count} tasks",
+  "@tasksInGroup": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "chatWithNavixAI": "Chat with Navix AI",
+  "viewContext": "View Context",
+  "welcomeToNavixAI": "Welcome to Navix AI",
+  "askMeAnything": "Ask me anything about your project or task",
+  "typeYourMessage": "Type your message...",
+  "send": "Send",
+  "conversationContext": "Conversation Context",
+  "project": "Project",
+  "aiThinking": "Navix AI is thinking...",
+  "detailedDescription": "Detailed Description",
+  "community": "Community",
+  "communityFeed": "Community Feed",
+  "createPost": "Create Post",
+  "postTitle": "Post Title",
+  "postContent": "Post Content",
+  "postTitleHint": "What's your post about?",
+  "postContentHint": "Share your thoughts, ideas, or questions...",
+  "addImage": "Add Image",
+  "removeImage": "Remove Image",
+  "postImage": "Post Image",
+  "textPost": "Text Post",
+  "imagePost": "Image Post",
+  "sortBy": "Sort By",
+  "sortHot": "Hot",
+  "sortLatest": "Latest",
+  "sortTop": "Top",
+  "upvote": "Upvote",
+  "downvote": "Downvote",
+  "voteCount": "{count} votes",
+  "@voteCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "upvoted": "Upvoted",
+  "downvoted": "Downvoted",
+  "comment": "Comment",
+  "reply": "Reply",
+  "replyTo": "Reply to {name}",
+  "@replyTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "commentCount": "{count, plural, =0{No comments} =1{1 comment} other{{count} comments}}",
+  "@commentCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noCommentsYet": "No comments yet",
+  "beTheFirst": "Be the first to comment",
+  "addComment": "Add a comment...",
+  "writeComment": "Write a comment",
+  "writeReply": "Write a reply",
+  "postComment": "Post Comment",
+  "postReply": "Post Reply",
+  "loadMoreReplies": "Load more replies",
+  "viewReplies": "View {count} replies",
+  "@viewReplies": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hideReplies": "Hide replies",
+  "deletePost": "Delete Post",
+  "deleteComment": "Delete Comment",
+  "editPost": "Edit Post",
+  "editComment": "Edit Comment",
+  "confirmDeletePost": "Are you sure you want to delete this post?",
+  "confirmDeleteComment": "Are you sure you want to delete this comment?",
+  "postDeleted": "Post deleted",
+  "commentDeleted": "Comment deleted",
+  "postUpdated": "Post updated",
+  "commentUpdated": "Comment updated",
+  "reportPost": "Report Post",
+  "reportComment": "Report Comment",
+  "reportReason": "Report Reason",
+  "spam": "Spam",
+  "inappropriateContent": "Inappropriate Content",
+  "harassment": "Harassment",
+  "other": "Other",
+  "reportReasonHint": "Please describe the issue",
+  "reportSubmitted": "Report submitted",
+  "thankYouForReport": "Thank you for helping keep our community safe",
+  "sharePost": "Share Post",
+  "shareVia": "Share via",
+  "copyLink": "Copy Link",
+  "linkCopied": "Link copied to clipboard",
+  "postCreated": "Post created successfully",
+  "postCreateError": "Failed to create post",
+  "creatingPost": "Creating post...",
+  "uploadingImage": "Uploading image...",
+  "titleRequired": "Title is required",
+  "titleTooShort": "Title must be at least 10 characters",
+  "titleTooLong": "Title must be less than 300 characters",
+  "contentRequired": "Content is required",
+  "contentTooLong": "Content must be less than 10,000 characters",
+  "commentTooLong": "Comment must be less than 2,000 characters",
+  "loadingPosts": "Loading posts...",
+  "loadingComments": "Loading comments...",
+  "noPostsFound": "No posts found",
+  "noPostsYet": "No posts yet",
+  "beTheFirstToPost": "Be the first to share something!",
+  "postedBy": "Posted by {username}",
+  "@postedBy": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "postedTimeAgo": "{time} ago",
+  "@postedTimeAgo": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "edited": "Edited",
+  "editedLabel": "(edited)",
+  "characterCounter": "{current}/{max}",
+  "@characterCounter": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "discardPost": "Discard Post",
+  "discardChanges": "Discard Changes",
+  "confirmDiscardPost": "Are you sure you want to discard this post?",
+  "confirmDiscardChanges": "You have unsaved changes. Discard them?",
+  "keepEditing": "Keep Editing",
+  "discard": "Discard",
+  "myPosts": "My Posts",
+  "userPosts": "{username}'s Posts",
+  "@userPosts": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "postCount": "{count, plural, =0{No posts} =1{1 post} other{{count} posts}}",
+  "@postCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "viewFullImage": "View Full Image",
+  "imageLoadError": "Failed to load image",
+  "retryImageLoad": "Retry",
+  "commentNotificationTitle": "New comment on your post",
+  "commentNotificationBody": "{username} commented on your post",
+  "@commentNotificationBody": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "replyNotificationTitle": "New reply to your comment",
+  "replyNotificationBody": "{username} replied to your comment",
+  "@replyNotificationBody": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "upvoteNotificationTitle": "Your post is popular!",
+  "upvoteNotificationBody": "Your post has reached {count} upvotes",
+  "@upvoteNotificationBody": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "shareToChat": "Share to Chat",
+  "shareToApp": "Share to App",
+  "selectContact": "Select a connection",
+  "noConnections": "No connections yet",
+  "postShared": "Post shared successfully",
+  "sharingPost": "Sharing post...",
+  "editPostInfo": "Edit your post title and content. Images cannot be changed.",
+  "imageCannotBeChanged": "Images cannot be changed after posting.",
+  "editWithAI": "Edit with AI",
+  "aiProjectSupervisor": "AI Project Supervisor",
+  "aiSupervisorDescription": "Discuss project changes, deadlines, and features with Navix AI",
+  "askAboutProject": "Ask about your project...",
+  "suggestedActions": "Suggested Actions",
+  "confirmAction": "Confirm",
+  "rejectAction": "Keep as is",
+  "actionExecuted": "Action completed",
+  "actionFailed": "Failed to execute action",
+  "deadlineChanged": "Deadline changed successfully",
+  "tasksAdded": "{count, plural, =1{1 task added} other{{count} tasks added}}",
+  "@tasksAdded": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "milestoneAdded": "Milestone added successfully",
+  "examplePrompts": "Try asking...",
+  "exampleDeadlineChange": "The deadline has changed to January 30th",
+  "exampleAddFeature": "I want to add a user authentication feature",
+  "exampleProjectHealth": "Is the project on track to finish on time?",
+  "exampleTeamIssue": "One team member can't work for 3 weeks",
+  "aiThinkingAboutProject": "Analyzing your project...",
+  "noChangesNeeded": "No changes needed",
+  "projectAnalysis": "Project Analysis",
+  "recommendedChanges": "Recommended Changes",
+  "skillVerification": "Skill Verification",
+  "generatingTest": "Generating your test...",
+  "evaluatingAnswers": "Evaluating your answers...",
+  "goBack": "Go Back",
+  "questionProgress": "Question {current} of {total}",
+  "@questionProgress": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "submitTest": "Submit Test",
+  "previous": "Previous",
+  "skipQuestion": "I don't know",
+  "exitTestTitle": "Exit Test?",
+  "exitTestMessage": "Your progress will be lost if you exit now.",
+  "continueTest": "Continue Test",
+  "exit": "Exit",
+  "testComplete": "Test Complete!",
+  "verifyYourSkills": "Verify Your Skills",
+  "verifySkillsPrompt": "You have added skills that need verification. Take a quick test to verify your proficiency.",
+  "verifyNow": "Verify Now",
+  "skillsVerifiedAndSaved": "Skills verified and saved!",
+  "skillsVerifiedSuccess": "Skills verified successfully!",
+  "skillAlreadyAdded": "Skill already added",
+  "invalidSkillRejected": "Invalid skill: \"{skill}\" is not recognized as a valid skill",
+  "@invalidSkillRejected": {
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      }
+    }
+  },
+  "verify": "Verify",
+  "retake": "Retake",
+  "verifySkills": "Verify Skills",
+  "skillNameTooShort": "Skill name is too short (minimum 2 characters)",
+  "skillNameTooLong": "Skill name is too long (maximum 50 characters)",
+  "skillNameTooManyNumbers": "Skill name contains too many numbers",
+  "skillNameTooManySpecial": "Skill name contains too many special characters",
+  "skillNameRandomChars": "Skill name appears to be random characters",
+  "enterYourAnswer": "Enter your answer...",
+  "provideDetailedExplanation": "Provide a detailed explanation...",
+  "surveys": "Surveys",
+  "survey": "Survey",
+  "createSurvey": "Create Survey",
+  "noSurveys": "No surveys yet",
+  "createFirstSurvey": "Create your first survey to gather feedback",
+  "surveyDescription": "Describe your survey",
+  "surveyDescriptionHint": "Describe what kind of survey you want to create...",
+  "quickActions": "Quick Actions",
+  "fypSurvey": "FYP Survey",
+  "fypSurveyDescription": "Problem validation & user feedback",
+  "featureSurvey": "Feature Feedback",
+  "featureSurveyDescription": "Feature usage & improvements",
+  "userTestingSurvey": "User Testing",
+  "userTestingSurveyDescription": "Usability & satisfaction",
+  "customSurvey": "Custom Survey",
+  "customSurveyDescription": "Create your own survey",
+  "generateSurvey": "Generate with AI",
+  "generatingSurvey": "Generating survey...",
+  "aiThinking": "AI is thinking...",
+  "surveyGenerated": "Survey generated successfully",
+  "surveyCreated": "Survey created successfully",
+  "deleteSurvey": "Delete Survey",
+  "confirmDeleteSurvey": "Are you sure you want to delete this survey? All responses will be lost.",
+  "questions": "questions",
+  "responses": "responses",
+  "responseVisualization": "Response Visualization",
+  "noResponsesYet": "No responses yet",
+  "takeSurvey": "Take Survey",
+  "submitResponse": "Submit Response",
+  "responseSubmitted": "Response submitted successfully",
+  "pleaseEnterDescription": "Please enter a description or select a template",
+  "pleaseAnswerRequired": "Please answer all required questions",
+  "typeYourAnswer": "Type your answer...",
+  "shareSurvey": "Share Survey",
+  "shareInCommunity": "Share in Community",
+  "shareInCommunityDesc": "Post survey to community feed",
+  "shareInChat": "Share in Chat",
+  "shareInChatDesc": "Share survey via direct message",
+  "active": "Active",
+  "draft": "Draft",
+  "closed": "Closed",
+  "share": "Share",
+  "editSurvey": "Edit Survey",
+  "surveyUpdated": "Survey updated successfully",
+  "surveyTitle": "Survey Title",
+  "surveyTitleHint": "Enter survey title...",
+  "addQuestion": "Add Question",
+  "question": "Question",
+  "enterQuestionText": "Enter question text...",
+  "questionType": "Question Type",
+  "singleChoice": "Single Choice",
+  "multipleChoice": "Multiple Choice",
+  "textAnswer": "Text Answer",
+  "starRating": "Star Rating",
+  "options": "Options",
+  "addOption": "Add Option",
+  "option": "Option",
+  "required": "Required",
+  "selectChat": "Select Chat",
+  "selectRecipient": "Select Recipient",
+  "surveySharedSuccessfully": "Survey shared successfully",
+  "noConnectionsYet": "No connections yet",
+  "connectWithPeopleFirst": "Connect with people to share surveys",
+  "tapToTakeSurvey": "Tap to participate in this survey",
+  "thankYouAlreadyCompleted": "Thank you! You've already completed this survey",
+  "completed": "Completed",
+  "questions": "questions",
+  "aiPoweredSurvey": "AI-Powered Survey",
+  "aiSurveyDescription": "Let AI generate professional survey questions based on your project",
+  "selectTemplate": "Template",
+  "addDetails": "Details",
+  "generate": "Generate",
+  "chooseTemplateOrCustom": "Choose a template or describe your own",
+  "describeWhatYouWant": "Tell AI what kind of questions you need",
+  "proTip": "Pro Tip",
+  "surveyTipContent": "Be specific about your goals. Mention target audience, key topics, and the type of feedback you're looking for.",
+  "adminDashboard": "Dashboard",
+  "teamProgress": "Team Progress",
+  "nearingDeadlines": "Nearing Deadlines",
+  "noNearingDeadlines": "No tasks with approaching deadlines",
+  "workloadBalance": "Workload Balance",
+  "workloadBalanced": "Workload is well balanced",
+  "workloadUnbalanced": "Consider redistributing tasks",
+  "milestoneOverview": "Milestone Overview",
+  "activityFeed": "Recent Activity",
+  "noRecentActivity": "No recent activity",
+  "onTrack": "On Track",
+  "atRiskStatus": "At Risk",
+  "overdueStatus": "Overdue",
+  "daysLeft": "{count, plural, =1{1 day left} other{{count} days left}}",
+  "@daysLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "loadMore": "Load More",
+  "tasksCompleted": "{completed}/{total} tasks",
+  "@tasksCompleted": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "taskCompletedActivity": "{userName} completed \"{taskName}\"",
+  "@taskCompletedActivity": {
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      },
+      "taskName": {
+        "type": "String"
+      }
+    }
+  },
+  "taskStatusChangedActivity": "{userName} changed \"{taskName}\" to {status}",
+  "@taskStatusChangedActivity": {
+    "placeholders": {
+      "userName": {
+        "type": "String"
+      },
+      "taskName": {
+        "type": "String"
+      },
+      "status": {
+        "type": "String"
+      }
+    }
+  },
+  "taskAssignedActivity": "{taskName} assigned to {userName}",
+  "@taskAssignedActivity": {
+    "placeholders": {
+      "taskName": {
+        "type": "String"
+      },
+      "userName": {
+        "type": "String"
+      }
+    }
+  },
+  "idealDistribution": "Ideal: {count} tasks per member",
+  "@idealDistribution": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "teamManagementSection": "Team & Roles",
+  "aiRoleSuggestion": "Navi suggestion",
+  "currentRole": "Current: {role}",
+  "@currentRole": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "suggestedRole": "Suggested: {role}",
+  "@suggestedRole": {
+    "placeholders": {
+      "role": {
+        "type": "String"
+      }
+    }
+  },
+  "viewReasoning": "Long press to see why",
+  "naviReasoning": "Navi's Reasoning",
+  "missingRolesTitle": "Missing Roles",
+  "lookForSkills": "Look for someone with:",
+  "pendingInvitation": "Pending",
+  "analyzeTeam": "Analyze Team",
+  "analyzingTeam": "Analyzing team with AI...",
+  "noMissingRoles": "All roles are assigned!",
+  "highPriority": "High priority",
+  "mediumPriority": "Medium priority",
+  "lowPriority": "Low priority",
+  "tasksRequiring": "{count} tasks need this role",
+  "@tasksRequiring": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "skillLevel": "{skill} ({level})",
+  "@skillLevel": {
+    "placeholders": {
+      "skill": {
+        "type": "String"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "inviteNewMember": "Invite New Member",
+  "connectWith": "Connect with {name}",
+  "@connectWith": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "addConnectionMessage": "Add a personal message (optional)",
+  "connectionMessageHint": "Hi! I'd love to connect with you because...",
+  "sendConnection": "Send Request",
+  "findProjects": "Find Projects",
+  "applyToProject": "Apply to Project",
+  "selectRole": "Select Role",
+  "joinRequestMessageHint": "Why are you a good fit? (Optional)",
+  "sendApplication": "Send Application",
+  "openRoles": "Open Roles",
+  "loading": "Loading...",
+  "applicationSent": "Application sent successfully",
+  "noListingsFound": "No Projects Found",
+  "noListingsFoundSubtitle": "There are no open projects at the moment.",
+  "shareProject": "Share Project",
+  "leaderMessageLabel": "Message to Applicants",
+  "leaderMessageHint": "What are you looking for in team members? (Optional)",
+  "rolesNeeded": "Roles Needed",
+  "addRoleHint": "Type a role and press enter (e.g., UI Designer)",
+  "addAtLeastOneRole": "Add at least one role to publish",
+  "publishListing": "Publish Listing",
+  "unpublishListing": "Unpublish Listing",
+  "acceptRequest": "Accept",
+  "denyRequest": "Deny",
+  "joinRequests": "Join Requests"
+}
