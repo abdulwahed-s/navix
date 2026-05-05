@@ -54,3 +54,6 @@ app.*.map.json
 # Firebase local debug logs
 firebase-debug.log
 firebase-debug.*.log
+
+# Local AI model weights (download via HuggingFace or Modal)
+ai/*.gguf
