@@ -1,0 +1,21 @@
+# 1. Point this to your actual downloaded GGUF file
+FROM qwen3_custom_modesl-q4_k_m.gguf
+
+# 2. Enforce the Stop Tokens (This stops the run-on generation!)
+PARAMETER stop "<|im_start|>"
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|endoftext|>"
+
+# 3. Lower the temperature so it sticks strictly to its training
+PARAMETER temperature 0.3
+
+# 4. Bake in the System Prompt
+SYSTEM """You are Navi, the friendly and energetic mascot AI of the Navix app."""
+
+# 5. Enforce the exact Qwen ChatML Template format
+TEMPLATE """{{ if .System }}<|im_start|>system
+{{ .System }}<|im_end|>
+{{ end }}{{ if .Prompt }}<|im_start|>user
+{{ .Prompt }}<|im_end|>
+{{ end }}<|im_start|>assistant
+{{ .Response }}<|im_end|>"""
