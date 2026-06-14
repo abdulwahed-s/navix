@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/constants/app_colors.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../profile/domain/entities/profile_entity.dart';
 
@@ -38,31 +39,9 @@ class WorkspaceWorkloadBalance extends StatelessWidget {
     final theme = Theme.of(context);
 
     if (workloads.isEmpty) {
-      return Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surfaceContainerHighest.withValues(
-            alpha: 0.5,
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.people_outline,
-              color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
-              size: 20,
-            ),
-            const SizedBox(width: 10),
-            Text(
-              'No team members',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-          ],
-        ),
+      return const _EmptyState(
+        icon: Icons.people_outline,
+        title: 'No team members',
       );
     }
 
@@ -74,30 +53,18 @@ class WorkspaceWorkloadBalance extends StatelessWidget {
 
     final isBalanced = _isWorkloadBalanced(workloads, idealTaskCount);
 
+    final statusColor = isBalanced ? AppColors.successDark : AppColors.warningDark;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: isBalanced
-                  ? [
-                      Colors.green.withValues(alpha: 0.12),
-                      Colors.green.withValues(alpha: 0.04),
-                    ]
-                  : [
-                      Colors.orange.withValues(alpha: 0.12),
-                      Colors.orange.withValues(alpha: 0.04),
-                    ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
+            color: statusColor.withValues(alpha: 0.08),
             borderRadius: BorderRadius.circular(14),
             border: Border.all(
-              color: isBalanced
-                  ? Colors.green.withValues(alpha: 0.25)
-                  : Colors.orange.withValues(alpha: 0.25),
+              color: statusColor.withValues(alpha: 0.25),
             ),
           ),
           child: Row(
@@ -105,14 +72,12 @@ class WorkspaceWorkloadBalance extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: isBalanced
-                      ? Colors.green.withValues(alpha: 0.2)
-                      : Colors.orange.withValues(alpha: 0.2),
+                  color: statusColor.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
                   isBalanced ? Icons.balance : Icons.warning_amber_rounded,
-                  color: isBalanced ? Colors.green : Colors.orange,
+                  color: statusColor,
                   size: 22,
                 ),
               ),
@@ -126,9 +91,7 @@ class WorkspaceWorkloadBalance extends StatelessWidget {
                           ? l10n.workloadBalanced
                           : l10n.workloadUnbalanced,
                       style: theme.textTheme.titleSmall?.copyWith(
-                        color: isBalanced
-                            ? Colors.green.shade700
-                            : Colors.orange.shade700,
+                        color: statusColor,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
@@ -169,9 +132,9 @@ class WorkspaceWorkloadBalance extends StatelessWidget {
 
     Color barColor;
     if (isOverloaded) {
-      barColor = Colors.red;
+      barColor = AppColors.lightError;
     } else if (isUnderloaded && workload.taskCount > 0) {
-      barColor = Colors.blue;
+      barColor = AppColors.infoDark;
     } else {
       barColor = theme.colorScheme.primary;
     }
@@ -239,14 +202,7 @@ class WorkspaceWorkloadBalance extends StatelessWidget {
                               vertical: 2,
                             ),
                             decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                colors: [
-                                  theme.colorScheme.primary,
-                                  theme.colorScheme.primary.withValues(
-                                    alpha: 0.8,
-                                  ),
-                                ],
-                              ),
+                              color: theme.colorScheme.primary,
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: Text(
@@ -296,36 +252,34 @@ class WorkspaceWorkloadBalance extends StatelessWidget {
           ),
           const SizedBox(height: 12),
 
-          Stack(
-            children: [
-              Container(
-                height: 10,
-                decoration: BoxDecoration(
-                  color: theme.colorScheme.surfaceContainerHighest,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-              ),
-
-              FractionallySizedBox(
-                widthFactor: barWidth.clamp(0.0, 1.0),
-                child: Container(
-                  height: 10,
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [barColor, barColor.withValues(alpha: 0.7)],
+          // Animated workload bar
+          TweenAnimationBuilder<double>(
+            tween: Tween<double>(begin: 0.0, end: barWidth.clamp(0.0, 1.0)),
+            duration: const Duration(milliseconds: 600),
+            curve: Curves.easeOutCubic,
+            builder: (context, value, _) {
+              return Stack(
+                children: [
+                  Container(
+                    height: 10,
+                    decoration: BoxDecoration(
+                      color: theme.colorScheme.surfaceContainerHighest,
+                      borderRadius: BorderRadius.circular(5),
                     ),
-                    borderRadius: BorderRadius.circular(5),
-                    boxShadow: [
-                      BoxShadow(
-                        color: barColor.withValues(alpha: 0.3),
-                        blurRadius: 4,
-                        offset: const Offset(0, 1),
-                      ),
-                    ],
                   ),
-                ),
-              ),
-            ],
+                  FractionallySizedBox(
+                    widthFactor: value,
+                    child: Container(
+                      height: 10,
+                      decoration: BoxDecoration(
+                        color: barColor,
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),
@@ -342,5 +296,43 @@ class WorkspaceWorkloadBalance extends StatelessWidget {
       }
     }
     return true;
+  }
+}
+
+class _EmptyState extends StatelessWidget {
+  final IconData icon;
+  final String title;
+
+  const _EmptyState({required this.icon, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 20),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            size: 32,
+            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
   }
 }
