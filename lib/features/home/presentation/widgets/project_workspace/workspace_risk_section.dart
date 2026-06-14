@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/di/injection_container.dart';
-import '../../../../../l10n/app_localizations.dart';
 import '../../../../prediction/presentation/bloc/prediction_bloc.dart';
 import '../../../../prediction/presentation/widgets/risk_dashboard.dart';
 import '../../../../project/domain/entities/project_roadmap_entity.dart';
@@ -25,33 +24,18 @@ class WorkspaceRiskSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          l10n.riskPrediction,
-          style: theme.textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w600,
+    return BlocProvider(
+      create: (_) => sl<PredictionBloc>()
+        ..add(
+          LoadCachedPrediction(
+            projectId: projectId,
+            projectName: projectName,
+            roadmap: roadmap,
+            startDate: startDate,
+            endDate: endDate,
           ),
         ),
-        const SizedBox(height: 8),
-        BlocProvider(
-          create: (_) => sl<PredictionBloc>()
-            ..add(
-              LoadCachedPrediction(
-                projectId: projectId,
-                projectName: projectName,
-                roadmap: roadmap,
-                startDate: startDate,
-                endDate: endDate,
-              ),
-            ),
-          child: const RiskDashboard(),
-        ),
-      ],
+      child: const RiskDashboard(),
     );
   }
 }
