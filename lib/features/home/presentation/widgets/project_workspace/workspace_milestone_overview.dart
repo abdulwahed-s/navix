@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/constants/app_colors.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../project/domain/entities/milestone_entity.dart';
 import '../../../../project/domain/entities/task_entity.dart';
@@ -16,34 +17,11 @@ class WorkspaceMilestoneOverview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     if (milestones.isEmpty) {
-      return Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surfaceContainerHighest.withValues(
-            alpha: 0.5,
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.flag_outlined,
-              color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
-              size: 20,
-            ),
-            const SizedBox(width: 10),
-            Text(
-              'No milestones yet',
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-          ],
-        ),
+      return const _EmptyState(
+        icon: Icons.flag_outlined,
+        title: 'No milestones yet',
+        subtitle: 'Milestones will appear here once added to the roadmap.',
       );
     }
 
@@ -54,6 +32,7 @@ class WorkspaceMilestoneOverview extends StatelessWidget {
             context,
             milestones[i],
             tasks.where((t) => t.milestoneId == milestones[i].id).toList(),
+            index: i,
             isFirst: i == 0,
             isLast: i == milestones.length - 1,
           ),
@@ -66,6 +45,7 @@ class WorkspaceMilestoneOverview extends StatelessWidget {
     BuildContext context,
     MilestoneEntity milestone,
     List<TaskEntity> milestoneTasks, {
+    required int index,
     required bool isFirst,
     required bool isLast,
   }) {
@@ -137,14 +117,7 @@ class WorkspaceMilestoneOverview extends StatelessWidget {
               margin: EdgeInsets.only(left: 8, bottom: isLast ? 0 : 12),
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    status.color.withValues(alpha: 0.08),
-                    theme.colorScheme.surface,
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
+                color: theme.colorScheme.surface,
                 borderRadius: BorderRadius.circular(14),
                 border: Border.all(
                   color: theme.colorScheme.outlineVariant.withValues(
@@ -201,48 +174,45 @@ class WorkspaceMilestoneOverview extends StatelessWidget {
                   ),
                   const SizedBox(height: 14),
 
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          height: 8,
-                          decoration: BoxDecoration(
-                            color: theme.colorScheme.surfaceContainerHighest,
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          child: FractionallySizedBox(
-                            alignment: Alignment.centerLeft,
-                            widthFactor: progress,
+                  // Animated progress bar — duration cascades by index for stagger feel
+                  TweenAnimationBuilder<double>(
+                    tween: Tween<double>(begin: 0.0, end: progress),
+                    duration: Duration(milliseconds: 500 + index * 100),
+                    curve: Curves.easeOutCubic,
+                    builder: (context, value, _) {
+                      return Row(
+                        children: [
+                          Expanded(
                             child: Container(
+                              height: 8,
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    status.color,
-                                    status.color.withValues(alpha: 0.7),
-                                  ],
-                                ),
+                                color:
+                                    theme.colorScheme.surfaceContainerHighest,
                                 borderRadius: BorderRadius.circular(4),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: status.color.withValues(alpha: 0.3),
-                                    blurRadius: 4,
-                                    offset: const Offset(0, 1),
+                              ),
+                              child: FractionallySizedBox(
+                                alignment: Alignment.centerLeft,
+                                widthFactor: value,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: status.color,
+                                    borderRadius: BorderRadius.circular(4),
                                   ),
-                                ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                      const SizedBox(width: 12),
-                      Text(
-                        '${(progress * 100).toInt()}%',
-                        style: theme.textTheme.labelMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                          color: status.color,
-                        ),
-                      ),
-                    ],
+                          const SizedBox(width: 12),
+                          Text(
+                            '${(value * 100).toInt()}%',
+                            style: theme.textTheme.labelMedium?.copyWith(
+                              fontWeight: FontWeight.bold,
+                              color: status.color,
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                   ),
                   const SizedBox(height: 10),
 
@@ -252,7 +222,7 @@ class WorkspaceMilestoneOverview extends StatelessWidget {
                         Icons.calendar_today_outlined,
                         size: 14,
                         color: daysLeft < 0
-                            ? Colors.red
+                            ? AppColors.lightError
                             : theme.colorScheme.onSurfaceVariant,
                       ),
                       const SizedBox(width: 6),
@@ -262,7 +232,7 @@ class WorkspaceMilestoneOverview extends StatelessWidget {
                             : l10n.overdueWarning,
                         style: theme.textTheme.bodySmall?.copyWith(
                           color: daysLeft < 0
-                              ? Colors.red
+                              ? AppColors.lightError
                               : theme.colorScheme.onSurfaceVariant,
                           fontWeight: daysLeft < 0 ? FontWeight.w600 : null,
                         ),
@@ -330,13 +300,13 @@ enum _MilestoneStatus {
   Color get color {
     switch (this) {
       case _MilestoneStatus.onTrack:
-        return Colors.green;
+        return AppColors.successDark;
       case _MilestoneStatus.atRisk:
-        return Colors.orange;
+        return AppColors.warningDark;
       case _MilestoneStatus.overdue:
-        return Colors.red;
+        return AppColors.lightError;
       case _MilestoneStatus.completed:
-        return Colors.blue;
+        return AppColors.infoDark;
     }
   }
 
@@ -351,5 +321,56 @@ enum _MilestoneStatus {
       case _MilestoneStatus.completed:
         return l10n.statusCompleted;
     }
+  }
+}
+
+class _EmptyState extends StatelessWidget {
+  final IconData icon;
+  final String title;
+  final String? subtitle;
+
+  const _EmptyState({required this.icon, required this.title, this.subtitle});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 20),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            size: 32,
+            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          if (subtitle != null) ...[
+            const SizedBox(height: 4),
+            Text(
+              subtitle!,
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurfaceVariant.withValues(
+                  alpha: 0.7,
+                ),
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ],
+      ),
+    );
   }
 }
