@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/constants/app_colors.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../profile/domain/entities/profile_entity.dart';
 import '../../../../project/domain/entities/task_entity.dart';
@@ -20,7 +21,6 @@ class WorkspaceDeadlineAlerts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final theme = Theme.of(context);
 
     final now = DateTime.now();
     final today = DateTime(now.year, now.month, now.day);
@@ -29,47 +29,46 @@ class WorkspaceDeadlineAlerts extends StatelessWidget {
       if (task.status == TaskStatus.completed) return false;
       final daysLeft = task.deadline!.difference(today).inDays;
       return daysLeft >= 0 && daysLeft <= 7;
-    }).toList()..sort((a, b) => a.deadline!.compareTo(b.deadline!));
+    }).toList()
+      ..sort((a, b) => a.deadline!.compareTo(b.deadline!));
 
     if (nearDeadlineTasks.isEmpty) {
-      return _buildEmptyState(l10n, theme);
+      return _buildSuccessState(l10n, Theme.of(context));
     }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: nearDeadlineTasks.map((task) {
         final daysLeft = task.deadline!.difference(today).inDays;
-        return _buildAlertCard(context, task, daysLeft);
+        return _DeadlineAlertCard(
+          task: task,
+          daysLeft: daysLeft,
+          fetchUserProfile: fetchUserProfile,
+          l10n: l10n,
+        );
       }).toList(),
     );
   }
 
-  Widget _buildEmptyState(AppLocalizations l10n, ThemeData theme) {
+  Widget _buildSuccessState(AppLocalizations l10n, ThemeData theme) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            Colors.green.withValues(alpha: 0.12),
-            Colors.green.withValues(alpha: 0.04),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
+        color: AppColors.successDark.withValues(alpha: 0.08),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.green.withValues(alpha: 0.25)),
+        border: Border.all(color: AppColors.successDark.withValues(alpha: 0.25)),
       ),
       child: Row(
         children: [
           Container(
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: Colors.green.withValues(alpha: 0.2),
+              color: AppColors.successDark.withValues(alpha: 0.15),
               borderRadius: BorderRadius.circular(12),
             ),
-            child: const Icon(
+            child: Icon(
               Icons.check_circle_outline,
-              color: Colors.green,
+              color: AppColors.successDark,
               size: 24,
             ),
           ),
@@ -81,7 +80,7 @@ class WorkspaceDeadlineAlerts extends StatelessWidget {
                 Text(
                   l10n.noNearingDeadlines,
                   style: theme.textTheme.titleSmall?.copyWith(
-                    color: Colors.green.shade700,
+                    color: AppColors.successDark,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
@@ -89,7 +88,7 @@ class WorkspaceDeadlineAlerts extends StatelessWidget {
                 Text(
                   'All tasks are on track!',
                   style: theme.textTheme.bodySmall?.copyWith(
-                    color: Colors.green.shade600,
+                    color: AppColors.successDark.withValues(alpha: 0.8),
                   ),
                 ),
               ],
@@ -99,38 +98,75 @@ class WorkspaceDeadlineAlerts extends StatelessWidget {
       ),
     );
   }
+}
 
-  Widget _buildAlertCard(BuildContext context, TaskEntity task, int daysLeft) {
-    final l10n = AppLocalizations.of(context)!;
+Color _getAlertColor(int daysLeft) {
+  if (daysLeft <= 1) return AppColors.lightError;
+  if (daysLeft <= 3) return AppColors.warningDark;
+  return AppColors.warning;
+}
+
+class _DeadlineAlertCard extends StatefulWidget {
+  final TaskEntity task;
+  final int daysLeft;
+  final Future<ProfileEntity?> Function(String userId) fetchUserProfile;
+  final AppLocalizations l10n;
+
+  const _DeadlineAlertCard({
+    required this.task,
+    required this.daysLeft,
+    required this.fetchUserProfile,
+    required this.l10n,
+  });
+
+  @override
+  State<_DeadlineAlertCard> createState() => _DeadlineAlertCardState();
+}
+
+class _DeadlineAlertCardState extends State<_DeadlineAlertCard>
+    with SingleTickerProviderStateMixin {
+  AnimationController? _pulseController;
+  Animation<double>? _pulseAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.daysLeft == 0) {
+      _pulseController = AnimationController(
+        vsync: this,
+        duration: const Duration(milliseconds: 900),
+      )..repeat(reverse: true);
+
+      _pulseAnimation = Tween<double>(
+        begin: 0.6,
+        end: 1.0,
+      ).animate(
+        CurvedAnimation(parent: _pulseController!, curve: Curves.easeInOut),
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _pulseController?.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final alertColor = _getAlertColor(daysLeft);
-    final isUrgent = daysLeft <= 1;
+    final alertColor = _getAlertColor(widget.daysLeft);
+    final isUrgent = widget.daysLeft <= 1;
 
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(14),
-        gradient: LinearGradient(
-          colors: [
-            alertColor.withValues(alpha: 0.12),
-            alertColor.withValues(alpha: 0.03),
-          ],
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-        ),
+        color: alertColor.withValues(alpha: 0.06),
         border: Border.all(
           color: alertColor.withValues(alpha: 0.35),
           width: isUrgent ? 1.5 : 1,
         ),
-        boxShadow: isUrgent
-            ? [
-                BoxShadow(
-                  color: alertColor.withValues(alpha: 0.15),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ]
-            : null,
       ),
       child: Padding(
         padding: const EdgeInsets.all(14),
@@ -155,7 +191,7 @@ class WorkspaceDeadlineAlerts extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    task.name,
+                    widget.task.name,
                     style: theme.textTheme.titleSmall?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
@@ -163,9 +199,9 @@ class WorkspaceDeadlineAlerts extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 6),
-                  if (task.assignedTo != null)
+                  if (widget.task.assignedTo != null)
                     FutureBuilder<ProfileEntity?>(
-                      future: fetchUserProfile(task.assignedTo!),
+                      future: widget.fetchUserProfile(widget.task.assignedTo!),
                       builder: (context, snapshot) {
                         final profile = snapshot.data;
                         return Row(
@@ -187,7 +223,8 @@ class WorkspaceDeadlineAlerts extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 10,
                                     fontWeight: FontWeight.bold,
-                                    color: theme.colorScheme.onPrimaryContainer,
+                                    color:
+                                        theme.colorScheme.onPrimaryContainer,
                                   ),
                                 ),
                               ),
@@ -215,7 +252,7 @@ class WorkspaceDeadlineAlerts extends StatelessWidget {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          l10n.unassigned,
+                          widget.l10n.unassigned,
                           style: theme.textTheme.bodySmall?.copyWith(
                             color: theme.colorScheme.error,
                             fontStyle: FontStyle.italic,
@@ -229,38 +266,40 @@ class WorkspaceDeadlineAlerts extends StatelessWidget {
 
             const SizedBox(width: 10),
 
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-              decoration: BoxDecoration(
-                color: alertColor,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(
-                    color: alertColor.withValues(alpha: 0.3),
-                    blurRadius: 4,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
-              ),
-              child: Text(
-                daysLeft == 0 ? l10n.dueToday : l10n.daysLeft(daysLeft),
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 11,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 0.3,
-                ),
-              ),
-            ),
+            _buildUrgencyBadge(alertColor),
           ],
         ),
       ),
     );
   }
 
-  Color _getAlertColor(int daysLeft) {
-    if (daysLeft <= 1) return Colors.red.shade600;
-    if (daysLeft <= 3) return Colors.orange.shade600;
-    return Colors.amber.shade700;
+  Widget _buildUrgencyBadge(Color alertColor) {
+    final badge = Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: alertColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Text(
+        widget.daysLeft == 0
+            ? widget.l10n.dueToday
+            : widget.l10n.daysLeft(widget.daysLeft),
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 11,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 0.3,
+        ),
+      ),
+    );
+
+    if (_pulseAnimation == null) return badge;
+
+    return AnimatedBuilder(
+      animation: _pulseAnimation!,
+      builder: (context, child) =>
+          Opacity(opacity: _pulseAnimation!.value, child: child),
+      child: badge,
+    );
   }
 }
