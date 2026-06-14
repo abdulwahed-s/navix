@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/widgets/shimmer_loading.dart';
 import '../../../../../l10n/app_localizations.dart';
 import '../../../../profile/domain/entities/profile_entity.dart';
 
@@ -51,6 +52,7 @@ class _WorkspaceActivityFeedState extends State<WorkspaceActivityFeed> {
   final List<ActivityItem> _activities = [];
   bool _isLoading = true;
   bool _hasMore = true;
+  String? _errorMessage;
   static const int _pageSize = 10;
   DocumentSnapshot? _lastDocument;
 
@@ -63,7 +65,10 @@ class _WorkspaceActivityFeedState extends State<WorkspaceActivityFeed> {
   Future<void> _loadActivities() async {
     if (!_hasMore) return;
 
-    setState(() => _isLoading = true);
+    setState(() {
+      _isLoading = true;
+      _errorMessage = null;
+    });
 
     try {
       Query query = FirebaseFirestore.instance
@@ -151,7 +156,12 @@ class _WorkspaceActivityFeedState extends State<WorkspaceActivityFeed> {
         _isLoading = false;
       });
     } catch (e) {
-      setState(() => _isLoading = false);
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+          _errorMessage = e.toString();
+        });
+      }
     }
   }
 
@@ -161,49 +171,45 @@ class _WorkspaceActivityFeedState extends State<WorkspaceActivityFeed> {
     final theme = Theme.of(context);
 
     if (_isLoading && _activities.isEmpty) {
-      return Container(
-        padding: const EdgeInsets.all(32),
-        child: const Center(child: CircularProgressIndicator()),
+      return Column(
+        children: List.generate(3, (_) => const _ActivityItemSkeleton()),
       );
     }
 
+    if (_errorMessage != null && _activities.isEmpty) {
+      return _buildErrorState(context, theme);
+    }
+
     if (_activities.isEmpty) {
-      return Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: theme.colorScheme.surfaceContainerHighest.withValues(
-            alpha: 0.5,
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.history,
-              color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.7),
-              size: 22,
-            ),
-            const SizedBox(width: 12),
-            Text(
-              l10n.noRecentActivity,
-              style: theme.textTheme.bodyMedium?.copyWith(
-                color: theme.colorScheme.onSurfaceVariant,
-              ),
-            ),
-          ],
-        ),
+      return _EmptyState(
+        icon: Icons.history_outlined,
+        title: l10n.noRecentActivity,
       );
     }
 
     return Column(
       children: [
         for (var i = 0; i < _activities.length; i++)
-          _buildActivityTile(
-            context,
-            _activities[i],
-            isFirst: i == 0,
-            isLast: i == _activities.length - 1 && !_hasMore,
+          TweenAnimationBuilder<double>(
+            key: ValueKey(_activities[i].id),
+            tween: Tween<double>(begin: 0.0, end: 1.0),
+            duration: Duration(milliseconds: 300 + (i.clamp(0, 9) * 40)),
+            curve: Curves.easeOut,
+            builder: (context, value, child) {
+              return Opacity(
+                opacity: value,
+                child: Transform.translate(
+                  offset: Offset(20 * (1 - value), 0),
+                  child: child,
+                ),
+              );
+            },
+            child: _buildActivityTile(
+              context,
+              _activities[i],
+              isFirst: i == 0,
+              isLast: i == _activities.length - 1 && !_hasMore,
+            ),
           ),
         if (_hasMore)
           Padding(
@@ -230,6 +236,45 @@ class _WorkspaceActivityFeedState extends State<WorkspaceActivityFeed> {
             ),
           ),
       ],
+    );
+  }
+
+  Widget _buildErrorState(BuildContext context, ThemeData theme) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.errorContainer.withValues(alpha: 0.3),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(
+          color: theme.colorScheme.error.withValues(alpha: 0.3),
+        ),
+      ),
+      child: Row(
+        children: [
+          Icon(
+            Icons.wifi_off_rounded,
+            color: theme.colorScheme.error,
+            size: 22,
+          ),
+          const SizedBox(width: 14),
+          Expanded(
+            child: Text(
+              'Could not load activity',
+              style: theme.textTheme.bodySmall?.copyWith(
+                color: theme.colorScheme.onSurface,
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
+          TextButton(
+            onPressed: () {
+              setState(() => _errorMessage = null);
+              _loadActivities();
+            },
+            child: const Text('Retry'),
+          ),
+        ],
+      ),
     );
   }
 
@@ -408,5 +453,126 @@ class _WorkspaceActivityFeedState extends State<WorkspaceActivityFeed> {
     } else {
       return '${timestamp.day}/${timestamp.month}/${timestamp.year}';
     }
+  }
+}
+
+class _EmptyState extends StatelessWidget {
+  final IconData icon;
+  final String title;
+
+  const _EmptyState({required this.icon, required this.title});
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 28, horizontal: 20),
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surfaceContainerHighest.withValues(alpha: 0.4),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            size: 32,
+            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.5),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            style: theme.textTheme.bodyMedium?.copyWith(
+              color: theme.colorScheme.onSurfaceVariant,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _ActivityItemSkeleton extends StatelessWidget {
+  const _ActivityItemSkeleton();
+
+  @override
+  Widget build(BuildContext context) {
+    return ShimmerLoading(
+      child: IntrinsicHeight(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              width: 28,
+              child: Column(
+                children: [
+                  Container(width: 2, height: 8, color: Colors.white),
+                  Container(
+                    width: 14,
+                    height: 14,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(width: 2, color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Container(
+                margin: const EdgeInsets.only(left: 8, bottom: 10),
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 32,
+                      height: 32,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 12,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          Container(
+                            height: 10,
+                            width: 120,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
